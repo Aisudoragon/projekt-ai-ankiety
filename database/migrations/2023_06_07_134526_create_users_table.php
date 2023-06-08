@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('login', 30)->unique();
             $table->string('password', 30);
             $table->string('email', 30)->unique();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('permission_id');
             $table->foreign('permission_id')->references('id')->on('permissions');
+            // $table->rememberToken();
             $table->timestamps();
         });
     }
