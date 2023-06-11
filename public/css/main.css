@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa';
+}
+
+html {
+    background: linear-gradient(90deg, #fcafd7 0%, #ffc1fb 49%, #a2c1ff 99%), #ffc1fb;
+}
+
+body {
+    background: transparent;
+}
