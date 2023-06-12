@@ -16,9 +16,20 @@
 </head>
 <body>
     @include('nav')
-    <br />
-    YUPIIIIIIIIIIIIIIIIII
-    <br />
+    <div class="container">
+        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            @foreach ($forms as $f)
+                <div class="col d-flex justify-content-center">
+                    <div class="card" style="width:20rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ $f->name }}</h5>
+                        <p class="card-text">{{ $f->description }}</p>
+                      </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
     @include('footer')
 </body>
 </html>

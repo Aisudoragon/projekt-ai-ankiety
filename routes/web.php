@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShowForms;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,4 @@ Route::get('/index', function () {
 
 Route::redirect('/', '/index');
 
-Route::get('browse', function () {
-    return view('browse');
-});
+Route::get('/browse', [ShowForms::class, 'index']);

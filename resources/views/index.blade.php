@@ -16,9 +16,9 @@
 </head>
 <body>
     @include('nav')
-    <br />
-    Hello world
-    <br />
+    <div class="container">
+        Hello world!
+    </div>
     @include('footer')
 </body>
 </html>
