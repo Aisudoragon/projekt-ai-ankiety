@@ -17,20 +17,11 @@
 <body>
     @include('nav')
     <div class="container">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-            @foreach ($forms as $f)
-                <div class="col d-flex justify-content-center">
-                    <a href="{{ route('form', ['id' => $f->id]) }}">
-                        <div class="card" style="width:25rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $f->name }}</h5>
-                            <p class="card-text">{{ $f->description }}</p>
-                        </div>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
-        </div>
+        {{ $form }}
+        <br />
+        @foreach ( $questions as $q )
+            {{ $q }} <br />
+        @endforeach
     </div>
     @include('footer')
 </body>

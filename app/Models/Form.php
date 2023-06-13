@@ -10,4 +10,9 @@ class Form extends Model
     use HasFactory;
 
     protected $table = 'forms';
+
+    public function getQuestions()
+        {
+            return $this->hasMany(Question::class);
+        }
 }

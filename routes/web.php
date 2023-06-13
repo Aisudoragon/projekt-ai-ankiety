@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShowForms;
+use App\Http\Controllers\FormsController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,18 @@ Route::get('/index', function () {
 
 Route::redirect('/', '/index');
 
-Route::get('/browse', [ShowForms::class, 'index']);
+Route::get('/browse', [FormsController::class, 'index']);
+
+Route::get('/form/{id}', [FormsController::class, 'show'])->name('form');
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');
