@@ -18,7 +18,12 @@ class FormsController extends Controller
         {
             $dane = Form::find($id);
             $questions = $dane->getQuestions()->get();
-            return view('form', ['form' => $dane, 'questions' => $questions]);
+
+            foreach ($questions as $question) {
+                $answers[$question->id] = $question->getAnswers()->get();
+            }
+
+            return view('form', ['form' => $dane, 'questions' => $questions, 'answers' => $answers]);
         }
 
     public function manage()

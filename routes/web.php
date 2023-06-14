@@ -32,8 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/manage', [FormsController::class, 'manage']);
 });
 
-
-
 Route::get('/form/{id}', [FormsController::class, 'show'])->name('form');
 
 Route::get('/login', function () {
@@ -48,6 +46,10 @@ Route::get('/register', function () {
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/profile', [UsersController::class, 'profile'])->name('profile');
+Route::get('/profile', [UsersController::class, 'index']);
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/update/email', [UsersController::class, 'updateEmail'])->name('update.email');
+Route::post('/update/login', [UsersController::class, 'updateLogin'])->name('update.login');
+Route::post('/update/password', [UsersController::class, 'updatePassword'])->name('update.password');
+
+Route::get('/logout', [AuthController::class, 'logout']);

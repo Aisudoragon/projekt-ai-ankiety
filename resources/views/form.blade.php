@@ -20,8 +20,24 @@
         {{ $form }}
         <br />
         @foreach ( $questions as $q )
-            {{ $q }} <br />
+            {{ $q }}
+            <br />
         @endforeach
+        <br />
+        @foreach ( $answers as $a )
+            @foreach ( $a as $b )
+                {{ $b }}
+                <br />
+            @endforeach
+        @endforeach
+        <div class="card">
+            <h5 class="card-header">{{ $form->name }}</h5>
+            <div class="card-body">
+                {{-- <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
+
+            </div>
+        </div>
     </div>
     @include('footer')
 </body>

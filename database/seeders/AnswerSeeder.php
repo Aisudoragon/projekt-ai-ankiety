@@ -16,31 +16,31 @@ class AnswerSeeder extends Seeder
         DB::table('answers')->insert([
             [
                 'question_id' => 1,
-                'name' => 'Question 1'
+                'name' => 'Answer 1'
             ],
             [
                 'question_id' => 1,
-                'name' => 'Question 2'
+                'name' => 'Answer 2'
             ],
             [
                 'question_id' => 1,
-                'name' => 'Question 3'
+                'name' => 'Answer 3'
             ],
             [
                 'question_id' => 2,
-                'name' => 'Question 4'
+                'name' => 'Answer 4'
             ],
             [
                 'question_id' => 2,
-                'name' => 'Question 5'
+                'name' => 'Answer 5'
             ],
             [
                 'question_id' => 2,
-                'name' => 'Question 6'
+                'name' => 'Answer 6'
             ],
             [
                 'question_id' => 3,
-                'name' => 'Question 7, write your answer here'
+                'name' => 'Answer 7, write your answer here'
             ]
         ]);
     }

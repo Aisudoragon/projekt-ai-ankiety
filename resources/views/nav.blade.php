@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light">
+<nav class="navbar navbar-expand-sm navbar-light" style="margin-bottom: 30px;">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/index') }}">Surveys</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
