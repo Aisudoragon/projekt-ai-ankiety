@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,12 @@ Route::redirect('/', '/index');
 
 Route::get('/browse', [FormsController::class, 'index']);
 
+Route::middleware('auth')->group(function () {
+    Route::get('/manage', [FormsController::class, 'manage']);
+});
+
+
+
 Route::get('/form/{id}', [FormsController::class, 'show'])->name('form');
 
 Route::get('/login', function () {
@@ -40,3 +47,7 @@ Route::get('/register', function () {
 });
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+Route::get('/profile', [UsersController::class, 'profile'])->name('profile');
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

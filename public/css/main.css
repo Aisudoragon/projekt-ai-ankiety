@@ -7,10 +7,6 @@
     font-family: 'Comfortaa';
 }
 
-html {
-    background: linear-gradient(90deg, #fcafd7 0%, #ffc1fb 49%, #a2c1ff 99%), #ffc1fb;
-}
-
 body {
     background: transparent;
 }

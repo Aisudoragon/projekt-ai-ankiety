@@ -22,11 +22,7 @@
 <body>
     @include('nav')
     <div class="container">
-        @auth
-            <p>Witaj, {{ auth()->user()->login }}</p>
-        @else
-            <p>Witaj, nieznajomy</p>
-        @endauth
+        Do zrobienia: zmiana loginu, zmiana hasła, zmiana emaila, usunięcie konta
     </div>
     @include('footer')
 </body>
