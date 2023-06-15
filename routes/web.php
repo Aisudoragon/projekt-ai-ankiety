@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChoicesController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -26,7 +27,7 @@ Route::get('/index', function () {
 
 Route::redirect('/', '/index');
 
-Route::get('/browse', [FormsController::class, 'index']);
+Route::get('/browse', [FormsController::class, 'index'])->name('browse');
 
 Route::middleware('auth')->group(function () {
     Route::get('/manage', [FormsController::class, 'manage']);
@@ -53,3 +54,7 @@ Route::post('/update/login', [UsersController::class, 'updateLogin'])->name('upd
 Route::post('/update/password', [UsersController::class, 'updatePassword'])->name('update.password');
 
 Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::post('/fill/{id}', [ChoicesController::class, 'submitForm'])->name('fill');
+
+Route::get('/create', [FormsController::class, 'create'])->name('create');

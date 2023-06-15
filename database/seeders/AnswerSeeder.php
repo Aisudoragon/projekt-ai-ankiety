@@ -41,6 +41,38 @@ class AnswerSeeder extends Seeder
             [
                 'question_id' => 3,
                 'name' => 'Answer 7, write your answer here'
+            ],
+            [
+                'question_id' => 4,
+                'name' => 'Answer 8'
+            ],
+            [
+                'question_id' => 4,
+                'name' => 'Answer 9'
+            ],
+            [
+                'question_id' => 4,
+                'name' => 'Answer 10'
+            ],
+            [
+                'question_id' => 4,
+                'name' => 'Answer 11'
+            ],
+            [
+                'question_id' => 5,
+                'name' => 'Answer 12'
+            ],
+            [
+                'question_id' => 5,
+                'name' => 'Answer 13'
+            ],
+            [
+                'question_id' => 5,
+                'name' => 'Answer 14'
+            ],
+            [
+                'question_id' => 6,
+                'name' => 'Answer 15, write your answer here'
             ]
         ]);
     }

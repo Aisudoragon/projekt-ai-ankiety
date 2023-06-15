@@ -33,4 +33,9 @@ class FormsController extends Controller
 
             return view('manage', ['forms' => $forms, 'user' => $user]);
         }
+
+    public function create()
+        {
+            return view('create');
+        }
 }

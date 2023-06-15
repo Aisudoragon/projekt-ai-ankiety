@@ -12,30 +12,62 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <style>
+        html {
+            background: linear-gradient(90deg, #ffb787 0%, #ffffff85 50%, #c485ac 100%), #FFC1FB;
+        }
+    </style>
     <title>Surveys</title>
 </head>
 <body>
     @include('nav')
     <div class="container">
-        {{ $form }}
-        <br />
-        @foreach ( $questions as $q )
-            {{ $q }}
-            <br />
-        @endforeach
-        <br />
-        @foreach ( $answers as $a )
-            @foreach ( $a as $b )
-                {{ $b }}
-                <br />
-            @endforeach
-        @endforeach
         <div class="card">
-            <h5 class="card-header">{{ $form->name }}</h5>
+            <div class="card-header">
+                <h3>{{ $form->name }}</h3>
+                <h5>{{ $form->description }}</h5>
+            </div>
             <div class="card-body">
-                {{-- <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
-
+                <form action="{{ route('fill', ['id' => $form->id]) }}" method="POST">
+                @csrf
+                @foreach ( $questions as $q )
+                    <h5 class="card-title">{{ $q->name }}</h5>
+                        <p class="card-text">
+                            @foreach ( $answers[$q->id] as $a )
+                                @if ($q->answer_type != 'text')
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="{{$q->answer_type}}"
+                                            @if ($q->answer_type == 'radio')
+                                                name="answer_{{ $q->id }}_radio"
+                                            @endif
+                                            @if ($q->answer_type == 'checkbox')
+                                                name="answer_{{ $q->id }}_checkbox[]"
+                                            @endif
+                                            value="{{ $a->id }}" id="answer{{ $a->id }}" @guest disabled @endguest>
+                                        <label class="form-check-label" for="answer{{ $a->id }}">
+                                            {{ $a->name }}
+                                    </div>
+                                @else
+                                    <label for="answer{{ $a->id }}" class="col-form-label">{{ $a->name }}</label>
+                                    <input type="text" class="form-control" name="answer_{{ $q->id }}_text" id="answer{{ $a->id }}" placeholder="Your answer here" @guest readonly @endguest>
+                                @endif
+                            @endforeach
+                        </p>
+                @endforeach
+                @auth
+                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="col d-flex justify-content-center">
+                            <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                        </div>
+                    </div>
+                @else
+                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="col d-flex justify-content-center">
+                            <h3>Please <a href="{{ route('login') }}">login</a> to fill and submit your answers</h3>
+                        </div>
+                    </div>
+                @endauth
+                </form>
             </div>
         </div>
     </div>

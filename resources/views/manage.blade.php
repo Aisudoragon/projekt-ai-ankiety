@@ -23,6 +23,11 @@
     @include('nav')
         <div class="container">
             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                <div class="col d-flex justify-content-center" style="margin-bottom: 30px;">
+                    <a class="btn btn-primary btn-lg" href="{{ route('create') }}" role="button">Create survey</a>
+                </div>
+            </div>
+            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                 @foreach ($forms as $f)
                     <div class="col d-flex justify-content-center" style="margin-bottom: 28px;">
                         <div class="card" style="width:25rem;">
@@ -31,10 +36,10 @@
                             <p class="card-text">{{ $f->description }}</p>
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col d-flex justify-content-center">
-                                    <a class="btn btn-primary" href="#" role="button">Check statistics</a>
+                                    <a class="btn btn-primary" href="#" role="button">Check statistics</a> < JESZCZE NIE DZIAŁA
                                 </div>
                                 <div class="col d-flex justify-content-center">
-                                    <a class="btn btn-primary" href="#" role="button">Edit</a>
+                                    <a class="btn btn-primary" href="#" role="button">Edit</a> < JESZCZE NIE DZIAŁA
                                 </div>
                             </div>
                         </div>

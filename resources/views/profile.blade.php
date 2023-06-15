@@ -22,7 +22,6 @@
 <body>
     @include('nav')
     <div class="container">
-        Do zrobienia: zmiana loginu, zmiana hasła, zmiana emaila, usunięcie konta
         <div class="col d-flex justify-content-center">
             <div class="card" style="width:30rem;">
                 <div class="card-body">
@@ -59,7 +58,7 @@
                         <button type="submit" class="btn btn-primary">Change password</button>
                     </form>
                     <hr />
-                    <a class="btn btn-danger " href="#" role="button">DELETE PROFILE</a>
+                    <a class="btn btn-danger " href="#" role="button">DELETE PROFILE</a> < JESZCZE NIE DZIAŁA
                 </div>
               </div>
         </div>

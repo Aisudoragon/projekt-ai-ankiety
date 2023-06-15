@@ -22,22 +22,10 @@ class UserSeeder extends Seeder
                 'permission_id' => 1,
             ],
             [
-                'login' => 'moderator',
-                'password' => Hash::make('1234'),
-                'email' => 'moderator@email.com',
-                'permission_id' => 2,
-            ],
-            [
                 'login' => 'admin',
                 'password' => Hash::make('1234'),
                 'email' => 'admin@email.com',
-                'permission_id' => 3,
-            ],
-            [
-                'login' => 'superadmin',
-                'password' => Hash::make('1234'),
-                'email' => 'superadmin@email.com',
-                'permission_id' => 4,
+                'permission_id' => 2
             ]
         ]);
     }
