@@ -57,4 +57,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::post('/fill/{id}', [ChoicesController::class, 'submitForm'])->name('fill');
 
-Route::get('/create', [FormsController::class, 'create'])->name('create');
+Route::get('/create', function () {
+    return view('create');
+})->name('create');
+Route::post('/create/new', [FormsController::class, 'create'])->name('create.new');

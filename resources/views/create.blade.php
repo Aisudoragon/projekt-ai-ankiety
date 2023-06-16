@@ -25,7 +25,7 @@
     <div class="container">
         WORK IN PROGRESS
         <div class="card">
-            <form action="{{ url('/create') }}" method="POST">
+            <form action="{{ route('create.new') }}" method="POST">
             @csrf
                 <div class="card-header">
                     <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
@@ -33,7 +33,7 @@
                             <h3>Survey name:</h3>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="survey_name" id="surveryName" placeholder="Do you know about the game?" @guest readonly @endguest>
+                            <input type="text" class="form-control" name="form_name" id="formName" placeholder="Enter your survey name" @guest readonly @endguest>
                         </div>
                     </div>
                     <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
@@ -41,15 +41,13 @@
                             <h5>Survey description:</h5>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="survey_name" id="surveryName" placeholder="Did you lost or you don't know what's the deal?" @guest readonly @endguest>
+                            <input type="text" class="form-control" name="form_description" id="formDescription" placeholder="Enter description for your survey" @guest readonly @endguest>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    {{-- <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> --}}
                     <div class="form-group" id="questions-container">
-                        <!-- dynamic questions will be added here -->
+                        <!-- TUTAJ BĘDĄ SIĘ POJAWIAĆ PYTANIA -->
                     </div>
                     <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 40px;">
                         <div class="col d-flex justify-content-center">

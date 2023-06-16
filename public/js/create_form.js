@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const addTextQuestionBtn = document.getElementById('add-text-question-btn');
     const questionsContainer = document.getElementById('questions-container');
     let questionCounter = 1;
+    let answerCounter = 1;
 
     addRadioQuestionBtn.addEventListener('click', function() {
         addQuestion('radio');
@@ -20,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     function addQuestion(type) {
+        let questionNumber = questionCounter;
+
         const questionDiv = document.createElement('div');
         questionDiv.classList.add('form-group');
 
@@ -29,13 +32,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const questionInput = document.createElement('input');
         questionInput.setAttribute('type', 'text');
         questionInput.setAttribute('class', 'form-control');
-        questionInput.setAttribute('name', `question_${questionCounter}`);
+        questionInput.setAttribute('name', `question[${questionNumber}]`);
         questionInput.setAttribute('placeholder', 'Enter your question');
+
+        const questionTypeInput = document.createElement('input');
+            questionTypeInput.setAttribute('type', 'hidden');
+            questionTypeInput.setAttribute('name', `question_type[${questionNumber}]`);
+            questionTypeInput.setAttribute('value', type);
 
         let addAnswerBtn = '';
         if (type !== 'text') {
             addAnswerBtn = createButton('Add answer', function() {
-                addAnswer(questionDiv);
+                addAnswer(questionDiv, questionNumber);
             });
         }
 
@@ -45,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         questionDiv.appendChild(questionLabel);
         questionDiv.appendChild(questionInput);
+        questionDiv.appendChild(questionTypeInput);
         if (type !== 'text') {
             questionDiv.appendChild(addAnswerBtn);
         }
@@ -54,11 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
         questionCounter++;
     }
 
-    function addAnswer(questionDiv) {
+    function addAnswer(questionDiv, questionNumber) {
         const answerInput = document.createElement('input');
         answerInput.setAttribute('type', 'text');
         answerInput.setAttribute('class', 'form-control');
+        answerInput.setAttribute('name', `answer[${questionNumber}][]`);
         answerInput.setAttribute('placeholder', 'Enter an answer');
+
+        answerCounter++;
 
         const deleteAnswerBtn = createButton('Delete answer', function() {
             deleteAnswer(questionDiv, answerInput);

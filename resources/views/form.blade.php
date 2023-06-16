@@ -33,24 +33,22 @@
                 @foreach ( $questions as $q )
                     <h5 class="card-title">{{ $q->name }}</h5>
                         <p class="card-text">
+                            @if ($q->answer_type == 'text')
+                                <input type="text" class="form-control" name="answer_{{ $q->id }}_text" id="answer{{ $q->id }}" placeholder="Your answer here" @guest readonly @endguest>
+                            @endif
                             @foreach ( $answers[$q->id] as $a )
-                                @if ($q->answer_type != 'text')
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="{{$q->answer_type}}"
-                                            @if ($q->answer_type == 'radio')
-                                                name="answer_{{ $q->id }}_radio"
-                                            @endif
-                                            @if ($q->answer_type == 'checkbox')
-                                                name="answer_{{ $q->id }}_checkbox[]"
-                                            @endif
-                                            value="{{ $a->id }}" id="answer{{ $a->id }}" @guest disabled @endguest>
-                                        <label class="form-check-label" for="answer{{ $a->id }}">
-                                            {{ $a->name }}
-                                    </div>
-                                @else
-                                    <label for="answer{{ $a->id }}" class="col-form-label">{{ $a->name }}</label>
-                                    <input type="text" class="form-control" name="answer_{{ $q->id }}_text" id="answer{{ $a->id }}" placeholder="Your answer here" @guest readonly @endguest>
-                                @endif
+                                <div class="form-check">
+                                    <input class="form-check-input" type="{{$q->answer_type}}"
+                                        @if ($q->answer_type == 'radio')
+                                            name="answer_{{ $q->id }}_radio"
+                                        @endif
+                                        @if ($q->answer_type == 'checkbox')
+                                            name="answer_{{ $q->id }}_checkbox[]"
+                                        @endif
+                                        value="{{ $a->id }}" id="answer{{ $a->id }}" @guest disabled @endguest>
+                                    <label class="form-check-label" for="answer{{ $a->id }}">
+                                        {{ $a->name }}
+                                </div>
                             @endforeach
                         </p>
                 @endforeach
