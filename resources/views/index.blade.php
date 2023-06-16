@@ -27,6 +27,7 @@
         @else
             <p>Witaj, nieznajomy</p>
         @endauth
+        ^ TEST LOGOWANIA
     </div>
     @include('footer')
 </body>
