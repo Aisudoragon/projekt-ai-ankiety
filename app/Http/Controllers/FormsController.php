@@ -7,14 +7,24 @@ use Illuminate\Http\Request;
 use App\Models\Form;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FormsController extends Controller
 {
     public function index()
-        {
+    {
+
+        if (auth()->check()) {
+            $data = Form::whereDoesntHave('users', function ($query) {
+                $query->where('id', auth()->user()->id);
+            })->get();
+        } else {
             $data = Form::all();
-            return view('browse', ['forms' => $data]);
         }
+
+        return view('browse', ['forms' => $data]);
+    }
+
 
     public function show($id)
         {
@@ -41,6 +51,25 @@ class FormsController extends Controller
     public function create(Request $request)
         {
             $user = Auth::user();
+
+            $validator = Validator::make($request->all(), [
+                'form_name' => 'required|max:100',
+                'form_description' => 'max:500',
+                'question.*' => 'required|max:200',
+                'answer.*.*' => 'required|max:200',
+                'question' => 'required|array|min:1',
+                'answer.*' => 'required|array|min:2',
+            ]);
+
+            $validator->setAttributeNames([
+                'question.*' => 'question',
+                'answer.*.*' => 'answer',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
 
             $formName = $request->input('form_name');
             $formDescription = $request->input('form_description');
@@ -77,5 +106,36 @@ class FormsController extends Controller
             }
 
             return redirect()->route('manage')->with('success', 'Form created successfully!');
+        }
+
+    public function statistics($id)
+        {
+            $dane = Form::find($id);
+            $questions = $dane->getQuestions()->get();
+
+            foreach ($questions as $question) {
+                if ($question->type != 'text') {
+                    $answers[$question->id] = $question->getAnswers()->get();
+                } else {
+                    $answers[$question->id] = $question->getChoices()->get();
+                }
+
+                $responsesCount[$question->id] = $question->getChoices()
+                    ->groupBy('answer_id')
+                    ->selectRaw('answer_id, count(*) as total')
+                    ->pluck('total', 'answer_id')
+                    ->toArray();
+            }
+
+            $choices = $dane->getChoices()->get();
+            $answersCount = $choices->where('form_id', $id)->unique('form_id')->count();
+
+            return view('manage-statistics', [
+                'form' => $dane,
+                'questions' => $questions,
+                'answers' => $answers,
+                'answersCount' => $answersCount,
+                'responsesCount' => $responsesCount
+            ]);
         }
 }

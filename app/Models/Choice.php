@@ -9,6 +9,8 @@ class Choice extends Model
 {
     use HasFactory;
 
+    protected $table = 'choices';
+
     protected $fillable = [
         'form_id',
         'question_id',

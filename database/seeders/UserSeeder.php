@@ -26,6 +26,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('1234'),
                 'email' => 'admin@email.com',
                 'permission_id' => 2
+            ],
+            [
+                'login' => 'operator',
+                'password' => Hash::make('1234'),
+                'email' => 'operator@email.com',
+                'permission_id' => 3
             ]
         ]);
     }

@@ -22,13 +22,14 @@
 <body>
     @include('nav')
     <div class="container">
-        @auth
-            <p>Witaj, {{ auth()->user()->login }}</p>
-        @else
-            <p>Witaj, nieznajomy</p>
-        @endauth
-        ^ TEST LOGOWANIA<br />
-        OPISAĆ GŁÓWNY CEL STRONY
+        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            <div class="col d-flex justify-content-center">
+                <a class="btn btn-secondary" href="{{ route('admin.users') }}" role="button">USERS</a>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <a class="btn btn-secondary" href="#" role="button">SURVEYS</a>
+            </div>
+        </div>
     </div>
     @include('footer')
 </body>

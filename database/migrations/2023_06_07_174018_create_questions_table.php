@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->enum('answer_type', ['radio', 'checkbox', 'text']);
             $table->unsignedBigInteger('form_id');
-            $table->foreign('form_id')->references('id')->on('forms');
+            $table->foreign('form_id')->references('id')->on('forms')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

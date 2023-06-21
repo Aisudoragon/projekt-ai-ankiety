@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -62,5 +63,42 @@ class UsersController extends Controller
         $user->save();
 
         return redirect()->back()->with('success', 'Password successfully changed.');
+    }
+
+    public function admin()
+    {
+        return view('admin');
+    }
+
+    public function adminUsers()
+    {
+        $users = User::with('permission')->get();
+
+        return view('admin-users', ['users' => $users]);
+    }
+
+    public function adminUser($id)
+    {
+        $user = User::find($id);
+
+        return view('admin-edit-user', ['user' => $user]);
+    }
+
+    public function adminUserUpdate()
+    {
+        return redirect()->back()->with('success', 'User successfully updated.');
+    }
+
+    public function destroy($id = null)
+    {
+        if ($id) {
+            $user = User::find($id);
+            $user->delete();
+            return redirect()->back()->with('success', 'Account successfully deleted.');
+        } else {
+            $user = User::find(Auth::id());
+            $user->delete();
+            return redirect()->route('index')->with('success', 'Account successfully deleted.');
+        }
     }
 }

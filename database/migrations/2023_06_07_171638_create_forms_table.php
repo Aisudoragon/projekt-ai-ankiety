@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('forms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->string('name', 50);
-            $table->string('description', 2000)->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name', 100);
+            $table->string('description', 500)->nullable();
             $table->tinyInteger('suggested_time', false, true)->nullable();
             $table->timestamps();
         });

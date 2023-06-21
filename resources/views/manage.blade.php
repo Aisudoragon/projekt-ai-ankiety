@@ -36,10 +36,7 @@
                             <p class="card-text">{{ $f->description }}</p>
                             <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                                 <div class="col d-flex justify-content-center">
-                                    <a class="btn btn-primary" href="#" role="button">Check statistics</a> < JESZCZE NIE DZIAŁA
-                                </div>
-                                <div class="col d-flex justify-content-center">
-                                    <a class="btn btn-primary" href="#" role="button">Edit</a> < JESZCZE NIE DZIAŁA
+                                    <a class="btn btn-primary" href="{{ route('manage.statistics', ['id' => $f->id])}}" role="button">Check statistics</a>
                                 </div>
                             </div>
                         </div>

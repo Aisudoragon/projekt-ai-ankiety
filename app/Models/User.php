@@ -47,4 +47,9 @@ class User extends Authenticatable
         {
             return $this->hasMany(Form::class);
         }
+
+    public function permission()
+    {
+        return $this->belongsTo(Permission::class);
+    }
 }

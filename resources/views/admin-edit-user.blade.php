@@ -25,43 +25,37 @@
         <div class="col d-flex justify-content-center">
             <div class="card" style="width:30rem;">
                 <div class="card-body">
-                    <form action="{{ route('update.email') }}" method="POST">
+                    <form action="{{ route('admin.update.user') }}" method="POST">
                         @csrf
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
                             <div class="col">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"  style="margin-bottom: 25px;" value="{{ $user->email }}">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" value="{{ $user->email }}">
                             </div>
-                            <div class="col">
+                        </div>
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
+                            <div class="col d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Change e-mail</button>
                             </div>
                         </div>
-                    </form>
-                    <form action="{{ route('update.login') }}" method="POST">
-                        @csrf
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
                             <div class="col">
-                                <input type="text" name="login" class="form-control" placeholder="Login" style="margin-bottom: 25px;" value="{{ $user->login }}">
+                                <input type="text" name="login" class="form-control" placeholder="Login" value="{{ $user->login }}">
                             </div>
-                            <div class="col">
+                        </div>
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
+                            <div class="col d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Change login</button>
                             </div>
                         </div>
-                    </form>
-                    <form action="{{ route('update.password') }}" method="POST">
-                        @csrf
-                        <label for="previous_password">Previous password</label>
-                        <input type="password" name="previous_password" class="form-control" placeholder="Previous password" style="margin-bottom: 25px;">
                         <label for="password">New password</label>
                         <input type="password" name="password" class="form-control" placeholder="New password" style="margin-bottom: 25px;">
                         <label for="confirm_password">Confirm new password</label>
                         <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" style="margin-bottom: 25px;">
-                        <button type="submit" class="btn btn-primary">Change password</button>
-                    </form>
-                    <hr />
-                    <form action="{{ route('profile.destroy') }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">DELETE PROFILE</button>
+                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                            <div class="col d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Change password</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
               </div>

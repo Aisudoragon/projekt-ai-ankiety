@@ -23,14 +23,28 @@ Route::get('/welcome', function () {
 
 Route::get('/index', function () {
     return view('index');
-});
+})->name('index');
 
 Route::redirect('/', '/index');
 
 Route::get('/browse', [FormsController::class, 'index'])->name('browse');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/manage', [FormsController::class, 'manage']);
+    Route::get('/manage', [FormsController::class, 'manage'])->name('manage');
+    Route::get('/manage/statistics/{id}', [FormsController::class, 'statistics'])->name('manage.statistics');
+
+    Route::get('/create', function () {
+        return view('create');
+    })->name('create');
+    Route::post('/create/new', [FormsController::class, 'create'])->name('create.new');
+
+    Route::get('/admin', [UsersController::class, 'admin'])->name('admin');
+    Route::get('/admin/users', [UsersController::class, 'adminUsers'])->name('admin.users');
+    Route::get('/admin/users/{id}', [UsersController::class, 'adminUser'])->name('admin.user');
+    Route::post('/admin/users/update', [UsersController::class, 'adminUserUpdate'])->name('admin.update.user');
+
+    Route::get('/profile', [UsersController::class, 'index']);
+    Route::delete('/profile/delete/{id?}', [UsersController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('/form/{id}', [FormsController::class, 'show'])->name('form');
@@ -47,7 +61,6 @@ Route::get('/register', function () {
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-Route::get('/profile', [UsersController::class, 'index']);
 
 Route::post('/update/email', [UsersController::class, 'updateEmail'])->name('update.email');
 Route::post('/update/login', [UsersController::class, 'updateLogin'])->name('update.login');
@@ -57,7 +70,4 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::post('/fill/{id}', [ChoicesController::class, 'submitForm'])->name('fill');
 
-Route::get('/create', function () {
-    return view('create');
-})->name('create');
-Route::post('/create/new', [FormsController::class, 'create'])->name('create.new');
+

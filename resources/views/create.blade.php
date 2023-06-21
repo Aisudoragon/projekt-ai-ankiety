@@ -23,33 +23,47 @@
 <body>
     @include('nav')
     <div class="container">
-        WORK IN PROGRESS
         <div class="card">
             <form action="{{ route('create.new') }}" method="POST">
             @csrf
                 <div class="card-header">
-                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-auto">
                             <h3>Survey name:</h3>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="form_name" id="formName" placeholder="Enter your survey name" @guest readonly @endguest>
+                            <input type="text" class="form-control" name="form_name" id="formName" placeholder="Enter your survey name" value="{{ old('form_name') }}" maxlength="100" required>
                         </div>
                     </div>
-                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                    <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-auto">
                             <h5>Survey description:</h5>
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="form_description" id="formDescription" placeholder="Enter description for your survey" @guest readonly @endguest>
+                            <input type="text" class="form-control" name="form_description" id="formDescription" placeholder="Enter description for your survey" value="{{ old('form_description')}}" maxlength="500">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <h5>Suggested completion time (in minutes):</h5>
+                        </div>
+                        <div class="col">
+                            <input type="number" class="form-control" name="form_time" id="formTime" value="{{ old('form_time') ?? 5 }}" min="1" max="1440">
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="form-group" id="questions-container">
-                        <!-- TUTAJ BĘDĄ SIĘ POJAWIAĆ PYTANIA -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="alert alert-info">
+                                <strong>Be careful!</strong> You can't change your survey after submitting it. You can only delete it.
+                            </div>
+                        </div>
                     </div>
-                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 40px;">
+                    <div class="form-group" id="questions-container">
+                        {{-- TUTAJ BĘDĄ SIĘ POJAWIAĆ PYTANIA GENEROWANE PRZEZ UŻYTKOWNIKA --}}
+                    </div>
+                    <div class="row" style="margin-bottom: 40px;">
                         <div class="col d-flex justify-content-center">
                             <button type="button" class="btn btn-primary" id="add-radio-question-btn">Add radio question</button>
                         </div>
@@ -60,7 +74,7 @@
                             <button type="button" class="btn btn-primary" id="add-text-question-btn">Add text question</button>
                         </div>
                     </div>
-                    <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                    <div class="row">
                         <div class="col d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary" id="submit-survey-btn">Submit survey</button>
                         </div>

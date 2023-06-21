@@ -15,4 +15,14 @@ class Form extends Model
         {
             return $this->hasMany(Question::class);
         }
+
+    public function getChoices()
+        {
+            return $this->hasMany(Choice::class);
+        }
+
+    public function users()
+        {
+            return $this->belongsTo(User::class, 'user_id', 'id');
+        }
 }

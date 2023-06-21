@@ -11,6 +11,9 @@
                 <li><a class="nav-link" href="{{ url('/browse') }}">Browse</a></li>
                 @auth
                     <li><a class="nav-link" href="{{ url('/manage') }}">Manage</a></li>
+                    @if(Auth::user()->permission_id >= 2)
+                        <li><a class="nav-link" href="{{ route('admin') }}">ADMIN</a></li>
+                    @endif
                 @endauth
             </ul>
             @auth

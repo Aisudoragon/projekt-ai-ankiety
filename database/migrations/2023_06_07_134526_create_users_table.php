@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email', 30)->unique();
             // $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('permission_id')->default(1);
-            $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->foreign('permission_id')->references('id')->on('permissions')->onUpdate('cascade');
             // $table->rememberToken();
             $table->timestamps();
         });
