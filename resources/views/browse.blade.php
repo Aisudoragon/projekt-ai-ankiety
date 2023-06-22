@@ -22,7 +22,7 @@
 <body>
     @include('nav')
     <div class="container">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        <div class="row">
             @foreach ($forms as $f)
                 <div class="col d-flex justify-content-center" style="margin-bottom: 28px;">
                     <a href="{{ route('form', ['id' => $f->id]) }}">

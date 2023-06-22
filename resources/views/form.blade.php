@@ -34,13 +34,13 @@
                     <h5 class="card-title">{{ $q->name }}</h5>
                         <p class="card-text">
                             @if ($q->answer_type == 'text')
-                                <input type="text" class="form-control" name="answer_{{ $q->id }}_text" id="answer{{ $q->id }}" placeholder="Your answer here" @guest readonly @endguest>
+                                <input type="text" class="form-control" name="answer_{{ $q->id }}_text" id="answer{{ $q->id }}" placeholder="Your answer here" @guest readonly @endguest required maxlength="250">
                             @endif
                             @foreach ( $answers[$q->id] as $a )
                                 <div class="form-check">
                                     <input class="form-check-input" type="{{$q->answer_type}}"
                                         @if ($q->answer_type == 'radio')
-                                            name="answer_{{ $q->id }}_radio"
+                                            name="answer_{{ $q->id }}_radio" required
                                         @endif
                                         @if ($q->answer_type == 'checkbox')
                                             name="answer_{{ $q->id }}_checkbox[]"

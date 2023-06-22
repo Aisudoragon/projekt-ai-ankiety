@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <style>
         html {
-            background: linear-gradient(90deg, #FCAFF7 0%, #FFC1FB 50%, #A2C1FF 100%), #FFC1FB;
+            background: linear-gradient(90deg, #ffb787 0%, #ffffff85 50%, #c485ac 100%), #FFC1FB;
         }
     </style>
     <title>Surveys</title>
@@ -23,12 +23,27 @@
     @include('nav')
     <div class="container">
         <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
-            <div class="col d-flex justify-content-center">
-                <a class="btn btn-secondary" href="{{ route('admin.users') }}" role="button">USERS</a>
-            </div>
-            <div class="col d-flex justify-content-center">
-                <a class="btn btn-secondary" href="{{ route('admin.forms') }}" role="button">SURVEYS</a>
-            </div>
+            @foreach ($forms as $f)
+                <div class="col d-flex justify-content-center" style="margin-bottom: 28px;">
+                    <a href="{{ route('manage.statistics', ['id' => $f->id]) }}">
+                        <div class="card" style="width:25rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $f->name }}</h5>
+                            <p class="card-text">{{ $f->description }}</p>
+                            <div class="row">
+                                <div class="col d-flex justify-content-center">
+                                    <form action="{{ route('admin.forms.delete', ['id' => $f->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
     </div>
     @include('footer')

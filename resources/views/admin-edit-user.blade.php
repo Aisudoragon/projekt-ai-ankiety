@@ -27,33 +27,35 @@
                 <div class="card-body">
                     <form action="{{ route('admin.update.user') }}" method="POST">
                         @csrf
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <div class="row form-group" style="margin-bottom: 25px;">
+                            <label for="email" class="col-sm-3 col-form-label">E-mail</label>
                             <div class="col">
                                 <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" value="{{ $user->email }}">
                             </div>
                         </div>
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
-                            <div class="col d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Change e-mail</button>
-                            </div>
-                        </div>
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
+                        <div class="row form-group" style="margin-bottom: 25px;">
+                            <label for="login" class="col-sm-3 col-form-label">Login</label>
                             <div class="col">
                                 <input type="text" name="login" class="form-control" placeholder="Login" value="{{ $user->login }}">
                             </div>
                         </div>
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}" style="margin-bottom: 25px;">
-                            <div class="col d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Change login</button>
+                        <hr>
+                        <div class="row form-group" style="margin-bottom: 10px;">
+                            <label for="password" class="col-sm-4 col-form-label">New password <small>(optional)</small></label>
+                            <div class="col">
+                                <input type="password" name="password" class="form-control" placeholder="New password">
                             </div>
                         </div>
-                        <label for="password">New password</label>
-                        <input type="password" name="password" class="form-control" placeholder="New password" style="margin-bottom: 25px;">
-                        <label for="confirm_password">Confirm new password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" style="margin-bottom: 25px;">
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="row form-group" style="margin-bottom: 25px;">
+                            <label for="confirm_password" class="col-sm-4 col-form-label">Confirm new password</label>
+                            <div class="col">
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password">
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Change password</button>
+                                <button type="submit" class="btn btn-primary">Confirm changes</button>
                             </div>
                         </div>
                     </form>

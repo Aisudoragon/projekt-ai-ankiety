@@ -84,8 +84,39 @@ class UsersController extends Controller
         return view('admin-edit-user', ['user' => $user]);
     }
 
-    public function adminUserUpdate()
+    public function adminUserUpdate(Request $request)
     {
+        $email = $request->input('email');
+        $login = $request->input('login');
+        $password = $request->input('password');
+        $confirmPassword = $request->input('confirm_password');
+
+        $user = User::find($request->input('id'));
+
+        if ($email !== $user->email) {
+            $existingUser = User::where('email', $email)->first();
+            if ($existingUser) {
+                return redirect()->back()->with('error', 'Email is already taken.');
+            }
+
+            $user->email = $email;
+        }
+
+        if ($login !== $user->login) {
+            $existingUser = User::where('login', $login)->first();
+            if ($existingUser) {
+                return redirect()->back()->with('error', 'Login is already taken.');
+            }
+
+            $user->login = $login;
+        }
+
+        if (!empty($password) && $password == $confirmPassword) {
+            $user->password = bcrypt($password);
+        }
+
+        $user->save();
+
         return redirect()->back()->with('success', 'User successfully updated.');
     }
 

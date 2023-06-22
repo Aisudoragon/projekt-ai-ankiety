@@ -17,6 +17,8 @@ class FormsController extends Controller
         if (auth()->check()) {
             $data = Form::whereDoesntHave('users', function ($query) {
                 $query->where('id', auth()->user()->id);
+            })->whereDoesntHave('getChoices', function ($query) {
+                $query->where('user_id', auth()->user()->id);
             })->get();
         } else {
             $data = Form::all();
@@ -137,5 +139,28 @@ class FormsController extends Controller
                 'answersCount' => $answersCount,
                 'responsesCount' => $responsesCount
             ]);
+        }
+
+    public function destroy($id)
+        {
+            $form = Form::find($id);
+            $form->delete();
+
+            return redirect()->back()->with('success', 'Form deleted successfully!');
+        }
+
+    public function adminForms()
+        {
+            $forms = Form::all();
+
+            return view('admin-surveys', ['forms' => $forms]);
+        }
+
+    public function adminFormsDelete($id)
+        {
+            $form = Form::find($id);
+            $form->delete();
+
+            return redirect()->back()->with('success', 'Form deleted successfully!');
         }
 }

@@ -76,7 +76,7 @@
                     </div>
                     <div class="row">
                         <div class="col d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary" id="submit-survey-btn">Submit survey</button>
+                            <button type="submit" class="btn btn-success" id="submit-survey-btn">Submit survey</button>
                         </div>
                     </div>
                 </div>

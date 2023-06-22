@@ -22,21 +22,28 @@
 <body>
     @include('nav')
         <div class="container">
-            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            <div class="row">
                 <div class="col d-flex justify-content-center" style="margin-bottom: 30px;">
                     <a class="btn btn-primary btn-lg" href="{{ route('create') }}" role="button">Create survey</a>
                 </div>
             </div>
-            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+            <div class="row">
                 @foreach ($forms as $f)
                     <div class="col d-flex justify-content-center" style="margin-bottom: 28px;">
                         <div class="card" style="width:25rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $f->name }}</h5>
                             <p class="card-text">{{ $f->description }}</p>
-                            <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                            <div class="row">
                                 <div class="col d-flex justify-content-center">
                                     <a class="btn btn-primary" href="{{ route('manage.statistics', ['id' => $f->id])}}" role="button">Check statistics</a>
+                                </div>
+                                <div class="col d-flex justify-content-center">
+                                    <form action="{{ route('manage.destroy', ['id' => $f->id]) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

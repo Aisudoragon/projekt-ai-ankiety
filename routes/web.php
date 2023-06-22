@@ -32,6 +32,7 @@ Route::get('/browse', [FormsController::class, 'index'])->name('browse');
 Route::middleware('auth')->group(function () {
     Route::get('/manage', [FormsController::class, 'manage'])->name('manage');
     Route::get('/manage/statistics/{id}', [FormsController::class, 'statistics'])->name('manage.statistics');
+    Route::delete('/manage/delete/{id}', [FormsController::class, 'destroy'])->name('manage.destroy');
 
     Route::get('/create', function () {
         return view('create');
@@ -42,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/users', [UsersController::class, 'adminUsers'])->name('admin.users');
     Route::get('/admin/users/{id}', [UsersController::class, 'adminUser'])->name('admin.user');
     Route::post('/admin/users/update', [UsersController::class, 'adminUserUpdate'])->name('admin.update.user');
+
+    Route::get('/admin/forms', [FormsController::class, 'adminForms'])->name('admin.forms');
+    Route::delete('/admin/forms/delete/{id}', [FormsController::class, 'adminFormsDelete'])->name('admin.forms.delete');
 
     Route::get('/profile', [UsersController::class, 'index']);
     Route::delete('/profile/delete/{id?}', [UsersController::class, 'destroy'])->name('profile.destroy');
