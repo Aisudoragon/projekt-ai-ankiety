@@ -15,34 +15,54 @@ class QuestionSeeder extends Seeder
     {
         DB::table('questions')->insert([
             [
-                'name' => 'Question 1',
-                'answer_type' => 'radio',
-                'form_id' => 1
-            ],
-            [
-                'name' => 'Question 2',
+                'name' => 'The type of bread',
                 'answer_type' => 'checkbox',
                 'form_id' => 1
             ],
             [
-                'name' => 'Question 3',
-                'answer_type' => 'text',
+                'name' => 'The shape of bread',
+                'answer_type' => 'checkbox',
                 'form_id' => 1
             ],
             [
-                'name' => 'Question 4',
+                'name' => 'The size of bread',
+                'answer_type' => 'checkbox',
+                'form_id' => 1
+            ],
+            [
+                'name' => 'Are you stupid?',
                 'answer_type' => 'radio',
                 'form_id' => 2
             ],
             [
-                'name' => 'Question 5',
-                'answer_type' => 'checkbox',
+                'name' => "What's your favourite colour?",
+                'answer_type' => 'radio',
                 'form_id' => 2
             ],
             [
-                'name' => 'Question 6',
+                'name' => 'What is the airspeed velocity of an unladen swallow?',
                 'answer_type' => 'text',
                 'form_id' => 2
+            ],
+            [
+                'name' => 'Answer to the Ultimate Question of Life, the Universe, and Everything',
+                'answer_type' => 'text',
+                'form_id' => 2
+            ],
+            [
+                'name' => 'What is your favourite programming language?',
+                'answer_type' => 'radio',
+                'form_id' => 3
+            ],
+            [
+                'name' => 'Do you feel the dread in this cruel universe?',
+                'answer_type' => 'radio',
+                'form_id' => 3
+            ],
+            [
+                'name' => 'Would you recommend Laravel to your friends?',
+                'answer_type' => 'radio',
+                'form_id' => 3
             ]
         ]);
     }

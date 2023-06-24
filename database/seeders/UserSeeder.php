@@ -16,22 +16,40 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'login' => 'user',
-                'password' => Hash::make('1234'),
+                'login' => 'typicalUser',
+                'password' => Hash::make('password123'),
                 'email' => 'user@email.com',
                 'permission_id' => 1,
             ],
             [
-                'login' => 'admin',
-                'password' => Hash::make('1234'),
+                'login' => 'typicalAdmin',
+                'password' => Hash::make('password123'),
                 'email' => 'admin@email.com',
                 'permission_id' => 2
             ],
             [
-                'login' => 'operator',
-                'password' => Hash::make('1234'),
+                'login' => 'typicalOperator',
+                'password' => Hash::make('password123'),
                 'email' => 'operator@email.com',
                 'permission_id' => 3
+            ],
+            [
+                'login' => 'justAnotherUser',
+                'password' => Hash::make('password123'),
+                'email' => 'email@email.com',
+                'permission_id' => 1
+            ],
+            [
+                'login' => 'userThatIsNotAdmin',
+                'password' => Hash::make('password123'),
+                'email' => 'anotheremail@email.com',
+                'permission_id' => 1
+            ],
+            [
+                'login' => 'aRandomUser',
+                'password' => Hash::make('password123'),
+                'email' => 'random@email.com',
+                'permission_id' => 1
             ]
         ]);
     }

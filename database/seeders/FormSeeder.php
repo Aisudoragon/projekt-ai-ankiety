@@ -16,15 +16,21 @@ class FormSeeder extends Seeder
         DB::table('forms')->insert([
             [
                 'user_id' => 1,
-                'name' => 'Form 1',
-                'description' => 'Description 1',
+                'name' => 'What bread do you like?',
+                'description' => 'This survey is to find out what bread people like',
                 'suggested_time' => 10
             ],
             [
+                'user_id' => 3,
+                'name' => 'A little joke',
+                'description' => 'This surveys serves no purpose other than to make you laugh',
+                'suggested_time' => 240
+            ],
+            [
                 'user_id' => 2,
-                'name' => 'Form 2',
-                'description' => 'Description 2',
-                'suggested_time' => 20
+                'name' => "It's a little tiring",
+                'description' => 'It was hard to fill all of these surveys',
+                'suggested_time' => 5
             ]
         ]);
     }

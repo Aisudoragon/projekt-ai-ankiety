@@ -13,11 +13,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <script src="{{ asset('js/create_form.js') }}"></script>
-    <style>
-        html {
-            background: linear-gradient(90deg, #FCAFF7 0%, #FFC1FB 50%, #A2C1FF 100%), #FFC1FB;
-        }
-    </style>
     <title>Surveys</title>
 </head>
 <body>
@@ -48,7 +43,7 @@
                             <h3>Suggested completion time (in minutes):</h3>
                         </div>
                         <div class="col-2">
-                            <input type="number" class="form-control" name="form_time" id="formTime" value="{{ old('form_time') ?? 5 }}" min="1" max="1440">
+                            <input type="number" class="form-control" name="form_time" id="formTime" value="{{ old('form_time') ?? 5 }}" min="1" max="240">
                         </div>
                     </div>
                 </div>

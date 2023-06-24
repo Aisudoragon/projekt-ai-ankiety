@@ -57,6 +57,7 @@ class FormsController extends Controller
             $validator = Validator::make($request->all(), [
                 'form_name' => 'required|max:100',
                 'form_description' => 'max:500',
+                'suggested_time' => 'required|integer|min:1|max:240',
                 'question.*' => 'required|max:200',
                 'answer.*.*' => 'required|max:200',
                 'question' => 'required|array|min:1',
