@@ -44,7 +44,7 @@
             </div>
             <div class="row" style="margin-bottom: 24px">
                 <div class="col-md-12">
-                    <p class="text-center">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to create and fill surveys!</p>
+                    <p class="text-center">Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to create and fill surveys for free!</p>
                 </div>
             </div>
         @endguest
