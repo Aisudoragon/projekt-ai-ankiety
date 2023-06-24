@@ -62,6 +62,6 @@ class ChoicesController extends Controller
             }
         }
 
-        return redirect()->route('browse');
+        return redirect()->route('browse')->with('success', 'Answers submitted successfully!');
     }
 }

@@ -60,7 +60,7 @@ class FormsController extends Controller
                 'question.*' => 'required|max:200',
                 'answer.*.*' => 'required|max:200',
                 'question' => 'required|array|min:1',
-                'answer.*' => 'required|array|min:2',
+                'answer.*' => 'array|min:2',
             ]);
 
             $validator->setAttributeNames([
@@ -69,7 +69,7 @@ class FormsController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                return redirect()->back()->with('error', 'Survey must contain at least one question!')->withInput();
             }
 
 
@@ -87,6 +87,11 @@ class FormsController extends Controller
             $answers = $request->input('answer');
 
             foreach ($questions as $questionIndex => $questionData) {
+                $answerCount = count($answers[$questionIndex] ?? []);
+                if ($answerCount < 2 && $request->input("question_type.$questionIndex") != 'text') {
+                    $form->delete();
+                    return redirect()->back()->with('error', 'At least 2 answers are required for each question.');
+                }
                 $questionType = $request->input("question_type.$questionIndex");
 
                 $question = new Question();
@@ -130,7 +135,7 @@ class FormsController extends Controller
             }
 
             $choices = $dane->getChoices()->get();
-            $answersCount = $choices->where('form_id', $id)->unique('form_id')->count();
+            $answersCount = $choices->where('form_id', $id)->unique('user_id')->count();
 
             return view('manage-statistics', [
                 'form' => $dane,
@@ -154,13 +159,5 @@ class FormsController extends Controller
             $forms = Form::all();
 
             return view('admin-surveys', ['forms' => $forms]);
-        }
-
-    public function adminFormsDelete($id)
-        {
-            $form = Form::find($id);
-            $form->delete();
-
-            return redirect()->back()->with('success', 'Form deleted successfully!');
         }
 }

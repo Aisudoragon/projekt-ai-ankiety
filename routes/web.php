@@ -39,16 +39,24 @@ Route::middleware('auth')->group(function () {
     })->name('create');
     Route::post('/create/new', [FormsController::class, 'create'])->name('create.new');
 
-    Route::get('/admin', [UsersController::class, 'admin'])->name('admin');
-    Route::get('/admin/users', [UsersController::class, 'adminUsers'])->name('admin.users');
-    Route::get('/admin/users/{id}', [UsersController::class, 'adminUser'])->name('admin.user');
-    Route::post('/admin/users/update', [UsersController::class, 'adminUserUpdate'])->name('admin.update.user');
+    Route::middleware('admin')->group(function () {
+        Route::get('/admin', [UsersController::class, 'admin'])->name('admin');
+        Route::get('/admin/users', [UsersController::class, 'adminUsers'])->name('admin.users');
+        Route::get('/admin/users/{id}', [UsersController::class, 'adminUser'])->name('admin.user');
+        Route::post('/admin/users/update', [UsersController::class, 'adminUserUpdate'])->name('admin.update.user');
 
-    Route::get('/admin/forms', [FormsController::class, 'adminForms'])->name('admin.forms');
-    Route::delete('/admin/forms/delete/{id}', [FormsController::class, 'adminFormsDelete'])->name('admin.forms.delete');
+        Route::get('/admin/forms', [FormsController::class, 'adminForms'])->name('admin.forms');
+        Route::delete('/admin/forms/delete/{id}', [FormsController::class, 'destroy'])->name('admin.forms.delete');
+    });
 
     Route::get('/profile', [UsersController::class, 'index']);
     Route::delete('/profile/delete/{id?}', [UsersController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/update/email', [UsersController::class, 'updateEmail'])->name('update.email');
+    Route::post('/update/login', [UsersController::class, 'updateLogin'])->name('update.login');
+    Route::post('/update/password', [UsersController::class, 'updatePassword'])->name('update.password');
+
+    Route::post('/fill/{id}', [ChoicesController::class, 'submitForm'])->name('fill');
 });
 
 Route::get('/form/{id}', [FormsController::class, 'show'])->name('form');
@@ -65,13 +73,4 @@ Route::get('/register', function () {
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-
-Route::post('/update/email', [UsersController::class, 'updateEmail'])->name('update.email');
-Route::post('/update/login', [UsersController::class, 'updateLogin'])->name('update.login');
-Route::post('/update/password', [UsersController::class, 'updatePassword'])->name('update.password');
-
 Route::get('/logout', [AuthController::class, 'logout']);
-
-Route::post('/fill/{id}', [ChoicesController::class, 'submitForm'])->name('fill');
-
-

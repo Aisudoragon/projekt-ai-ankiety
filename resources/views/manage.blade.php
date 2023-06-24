@@ -22,6 +22,11 @@
 <body>
     @include('nav')
         <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="row">
                 <div class="col d-flex justify-content-center" style="margin-bottom: 30px;">
                     <a class="btn btn-primary btn-lg" href="{{ route('create') }}" role="button">Create survey</a>

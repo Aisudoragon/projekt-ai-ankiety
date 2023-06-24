@@ -9,6 +9,7 @@
 
 body {
     background: transparent;
+    height: 100%;
 }
 
 .give-space-for-lbl {

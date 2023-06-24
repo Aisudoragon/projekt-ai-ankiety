@@ -22,14 +22,26 @@
 <body>
     @include('nav')
     <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="alert alert-danger" role="alert">
+                    {{ $error }}
+                </div>
+            @endforeach
+        @endif
         <div class="col d-flex justify-content-center">
             <div class="card" style="width:30rem;">
                 <div class="card-body">
                     <form action="{{ route('update.email') }}" method="POST">
                         @csrf
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="row">
                             <div class="col">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"  style="margin-bottom: 25px;" value="{{ $user->email }}">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"  style="margin-bottom: 25px;" value="{{ $user->email }}" maxlength="255">
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">Change e-mail</button>
@@ -38,9 +50,9 @@
                     </form>
                     <form action="{{ route('update.login') }}" method="POST">
                         @csrf
-                        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                        <div class="row">
                             <div class="col">
-                                <input type="text" name="login" class="form-control" placeholder="Login" style="margin-bottom: 25px;" value="{{ $user->login }}">
+                                <input type="text" name="login" class="form-control" placeholder="Login" style="margin-bottom: 25px;" value="{{ $user->login }}" maxlength="20">
                             </div>
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">Change login</button>
@@ -52,9 +64,9 @@
                         <label for="previous_password">Previous password</label>
                         <input type="password" name="previous_password" class="form-control" placeholder="Previous password" style="margin-bottom: 25px;">
                         <label for="password">New password</label>
-                        <input type="password" name="password" class="form-control" placeholder="New password" style="margin-bottom: 25px;">
+                        <input type="password" name="password" class="form-control" placeholder="New password" style="margin-bottom: 25px;" maxlength="20">
                         <label for="confirm_password">Confirm new password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" style="margin-bottom: 25px;">
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password" style="margin-bottom: 25px;" maxlength="20">
                         <button type="submit" class="btn btn-primary">Change password</button>
                     </form>
                     <hr />

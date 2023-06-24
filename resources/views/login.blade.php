@@ -34,18 +34,18 @@
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <label for="login">Login</label>
-                        <input type="text" name="login" class="form-control" placeholder="Login" style="margin-bottom: 25px;">
+                        <input type="text" name="login" class="form-control" placeholder="Login" style="margin-bottom: 25px;" required>
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password" style="margin-bottom: 30px;">
+                        <input type="password" name="password" class="form-control" placeholder="Password" style="margin-bottom: 30px;" required>
                         <button type="submit" class="btn btn-primary">Log in</button>
-                        @if ($errors->any())
-                            <div class="alert alert-danger" style="margin-top: 50px;">
-                                @foreach ($errors->all() as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
                     </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger" style="margin-top: 50px;">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
                   </div>
                 </div>
             </div>

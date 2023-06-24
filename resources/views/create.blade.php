@@ -37,7 +37,7 @@
                     </div>
                     <div class="row" style="margin-bottom: 10px;">
                         <div class="col-md-auto">
-                            <h5>Survey description:</h5>
+                            <h3>Survey description:</h3>
                         </div>
                         <div class="col">
                             <input type="text" class="form-control" name="form_description" id="formDescription" placeholder="Enter description for your survey" value="{{ old('form_description')}}" maxlength="500">
@@ -45,9 +45,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-auto">
-                            <h5>Suggested completion time (in minutes):</h5>
+                            <h3>Suggested completion time (in minutes):</h3>
                         </div>
-                        <div class="col">
+                        <div class="col-2">
                             <input type="number" class="form-control" name="form_time" id="formTime" value="{{ old('form_time') ?? 5 }}" min="1" max="1440">
                         </div>
                     </div>
@@ -55,8 +55,25 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="alert alert-info">
-                                <strong>Be careful!</strong> You can't change your survey after submitting it. You can only delete it.
+                                <p><strong>Be careful!</strong> You can't change your survey after submitting it. You can only delete it.</p>
+                                <ul>
+                                    <li>Radio question - user can choose only one answer</li>
+                                    <li>Checkbox question - user can choose multiple answers</li>
+                                    <li>Text question - user can write their own answer</li>
+                                </ul>
+                                Requirements:
+                                <strong><ul>
+                                    <li>Survey must contain at least one question</li>
+                                    <li>Every question must contain at least two answers (beside text question)</li>
+                                    <li>Every question and answer must contain a name</li>
+                                </ul></strong>
+                                Failing to meet requirements will result in an error <strong>and loss of all progress.</strong>
                             </div>
                         </div>
                     </div>

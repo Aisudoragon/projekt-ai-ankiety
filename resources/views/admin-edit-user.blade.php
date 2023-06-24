@@ -53,6 +53,11 @@
                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm new password">
                             </div>
                         </div>
+                        @if(session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <div class="row">
                             <div class="col d-flex justify-content-center">
                                 <button type="submit" class="btn btn-primary">Confirm changes</button>

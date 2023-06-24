@@ -22,25 +22,34 @@
 <body>
     @include('nav')
     <div class="container" style="margin-top: 24px;">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <ul style="margin-bottom: 0px;">
+                    @foreach ($errors->all() as $error)
+                        <li style="list-style-type: none;">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="row">
             <div class="col text-center">
                 <h1 class="display-6">Another surveyed is coming!</h1>
             </div>
         </div>
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        <div class="row">
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width:20rem;">
                   <div class="card-body">
                     <form action="{{ route('register') }}" method="POST">
                         @csrf
                         <label for="login">Login</label>
-                        <input type="text" name="login" id="login" class="form-control" placeholder="Login" required style="margin-bottom: 25px;">
+                        <input type="text" name="login" id="login" class="form-control" placeholder="Login" required style="margin-bottom: 25px;" required value="{{ old('login') }}">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required style="margin-bottom: 25px;">
+                        <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" required style="margin-bottom: 25px;" required value="{{ old('email') }}">
                         <label for="password">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required style="margin-bottom: 25px;">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required style="margin-bottom: 25px;" required>
                         <label for="password_confirmation">Password confirmation</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Password" required style="margin-bottom: 25px;">
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Password" required style="margin-bottom: 25px;" required>
                         <button type="submit" class="btn btn-primary" style="margin-top: 12px;">Register</button>
                     </form>
                   </div>

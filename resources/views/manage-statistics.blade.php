@@ -55,7 +55,7 @@
                         <h5 class="card-title">{{ $q->name }}</h5>
                         <p class="card-text">
                             @foreach ( $answers[$q->id] as $a )
-                                <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                                <div class="row">
                                     <div class="col">
                                         {{ $a->name }}
                                     </div>
@@ -68,7 +68,7 @@
                     @endif
                 @endforeach
                 <hr>
-                <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+                <div class="row">
                     <div class="col">
                         <p>Total responses:</p>
                     </div>

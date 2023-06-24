@@ -22,12 +22,14 @@
 <body>
     @include('nav')
     <div class="container">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        <div class="row">
             <div class="col d-flex justify-content-center">
-                <a class="btn btn-secondary" href="{{ route('admin.users') }}" role="button">USERS</a>
-            </div>
-            <div class="col d-flex justify-content-center">
-                <a class="btn btn-secondary" href="{{ route('admin.forms') }}" role="button">SURVEYS</a>
+                <div class="col-md-auto">
+                    <a class="btn btn-secondary" href="{{ route('admin.users') }}" role="button">USERS</a>
+                </div>
+                <div class="col-md-auto">
+                    <a class="btn btn-secondary" href="{{ route('admin.forms') }}" role="button">SURVEYS</a>
+                </div>
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -36,7 +37,7 @@ class UsersController extends Controller
         $user = Auth::user();
 
         $validatedData = $request->validate([
-            'login' => 'required|unique:users|alpha_dash|max:255',
+            'login' => 'required|unique:users|alpha_dash|max:20',
         ]);
 
         $user->login = $validatedData['login'];
@@ -48,17 +49,22 @@ class UsersController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'previous_password' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required|min:8|max:20',
+            'confirm_password' => 'required|same:password'
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         $user = Auth::user();
         if (!Hash::check($request->previous_password, $user->password)) {
-            return redirect()->back()->with('error', 'Old password is incorrect.');
+            return redirect()->back()->withErrors(['previous_password' => 'Previous password is incorrect.'])->withInput();
         }
 
-        $user->password = Hash::make($request->new_password);
+        $user->password = Hash::make($request->password);
         /** @var \App\Models\User $user */ // Ten komentarz jest tylko po to, żeby IDE nie podkreślało $user->save() na czerwono
         $user->save();
 
@@ -117,7 +123,7 @@ class UsersController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('success', 'User successfully updated.');
+        return redirect()->route('admin.users')->with('success', 'User successfully updated.');
     }
 
     public function destroy($id = null)
@@ -129,7 +135,7 @@ class UsersController extends Controller
         } else {
             $user = User::find(Auth::id());
             $user->delete();
-            return redirect()->route('index')->with('success', 'Account successfully deleted.');
+            return redirect()->route('index')->with('deleted', 'Account successfully deleted.');
         }
     }
 }

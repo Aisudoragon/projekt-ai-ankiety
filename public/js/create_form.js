@@ -31,7 +31,7 @@ function addQuestion(type) {
 
     const questionLabel = document.createElement('label');
     questionLabel.setAttribute('class', 'give-space-for-lbl')
-    questionLabel.innerHTML = `${type} question`;
+    questionLabel.innerHTML = `<small>${type} question</small>`;
 
     const questionInput = document.createElement('input');
     questionInput.setAttribute('type', 'text');

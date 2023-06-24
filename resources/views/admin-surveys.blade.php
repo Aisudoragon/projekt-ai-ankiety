@@ -22,14 +22,19 @@
 <body>
     @include('nav')
     <div class="container">
-        <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
+        @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="row">
             @foreach ($forms as $f)
                 <div class="col d-flex justify-content-center" style="margin-bottom: 28px;">
                     <a href="{{ route('manage.statistics', ['id' => $f->id]) }}">
                         <div class="card" style="width:25rem;">
                         <div class="card-body">
                             <h5 class="card-title">{{ $f->name }}</h5>
-                            <p class="card-text">{{ $f->description }}</p>
+                            <p><small>Suggested time to complete: {{ $f->suggested_time }} minutes</small></p>
                             <div class="row">
                                 <div class="col d-flex justify-content-center">
                                     <form action="{{ route('admin.forms.delete', ['id' => $f->id]) }}" method="POST">

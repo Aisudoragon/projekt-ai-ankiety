@@ -61,7 +61,7 @@
                 @else
                     <div class="row ${1| ,row-cols-2,row-cols-3, auto,justify-content-md-center,|}">
                         <div class="col d-flex justify-content-center">
-                            <h3>Please <a href="{{ route('login') }}">login</a> to fill and submit your answers</h3>
+                            <h3>Please <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">register</a> to fill and submit your answers</h3>
                         </div>
                     </div>
                 @endauth
