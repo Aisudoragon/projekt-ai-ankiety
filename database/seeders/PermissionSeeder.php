@@ -14,7 +14,6 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        // Dodać do tabeli permissions rekordy z uprawnieniami
         DB::table('permissions')->insert([
             ['level' => 0, 'description' => 'User'],
             ['level' => 1, 'description' => 'Admin'],
